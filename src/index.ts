@@ -13,7 +13,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Frontend port
+    origin: process.env.CLIENT_URL || 'http://localhost:3000',
     credentials: true
   })
 )
@@ -40,8 +40,8 @@ app.use((_req, res) => {
 
 app.use(defaultErrorHandler)
 
-app.listen(port, () => {
-  console.log(`ðŸš€ Server is running on port ${port}`)
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port}`)
 })
 
 process.on('SIGINT', () => {
